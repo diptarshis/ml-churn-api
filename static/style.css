@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 2em;
+    background-color: #f0f0f0;
+}
+
+h2 {
+    color: #222;
+}
+
+.result {
+    margin-top: 1em;
+    color: green;
+    font-weight: bold;
+}
+
+button {
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    font-size: 1em;
+}
+
+
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    height: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 1em;
+}
+
+#progressBarFill {
+    height: 100%;
+    width: 0%;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+}

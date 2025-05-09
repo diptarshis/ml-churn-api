@@ -1,0 +1,11 @@
+data/
+data-analysis/
+model-dev/
+model-objects/
+artifacts/X_train.csv
+artifacts/X_test.csv
+artifacts/testing_data.csv
+artifacts/training_data.csv
+__pycache__/
+pipelines/__pycache__/
+**/__pycache__/

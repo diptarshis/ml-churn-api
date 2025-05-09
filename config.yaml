@@ -1,0 +1,66 @@
+PATHS: 
+  features_path: ../data/train (6).csv
+  labels_path: ../data/train_churn_labels.csv
+
+ARTIFACTS:
+  train_path: ../artifacts/X_train.csv
+  test_path: ../artifacts/X_test.csv
+  path: ../artifacts/
+  ohe_var_path: ../artifacts/ohe_vars.pkl
+  ohe_path: ../artifacts/ohe.pkl
+  feature_names_path: ../artifacts/feature_names.pkl
+  freq_var_path: ../artifacts/freq_vars.pkl
+  freq_map_path: ../artifacts/freq_maps.pkl
+  path_embeddings: ../artifacts/
+  numeric_stats_path: ../artifacts/numeric_stats.pkl
+  numeric_cols_path: ../artifacts/numeric_cols.pkl
+  best_model:  ../artifacts/best_model.joblib
+  model_validation_stats: ../artifacts/
+  encoder_path: ../artifacts/encoders.pkl
+  imputer_path_knn: ../artifacts/knn_imputer.pkl
+  imputer_path_bayesian_ridge: ../artifacts/pmm_imputer.pkl
+  imputer_path_knn_final: ../artifacts/knn_imputer_final.joblib
+  base_model_feature_select: ../artifacts/base_model_feature_select.pkl
+  features_selected_test: ../artifacts/features_selected.pkl
+
+fill_rate_cutoff: 70
+test_size: 0.3
+threshold_ohe: 5
+hidden_embed: 50
+epochs: 1
+batch_size: 128
+miss_treatment_numeric: knn
+modelling_data_path: ../artifacts/
+knn_final_imputation: 7
+
+FEATURE_SELECT_PARAMS:
+  n_estimators: 100
+
+PARAM_DIST:
+  n_estimators: 
+    distribution: randint
+    range: [100, 500]
+  max_depth: 
+    distribution: randint
+    range: [2, 8]
+  min_samples_split: 
+    distribution: randint
+    range: [2, 10]
+  min_samples_leaf: 
+    distribution: randint
+    range: [1, 5]
+  max_features: 
+    choices:
+      - sqrt
+      - log2
+      - null
+
+  bootstrap:
+    choices:
+      - true
+      - false
+
+n_iter_random_search: 5
+
+
+label: 'Label'

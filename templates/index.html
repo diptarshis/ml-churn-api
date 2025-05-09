@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload File for Inference</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Upload CSV for Prediction</h2>
+
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required>
+        <button type="submit">Upload and Predict</button>
+    </form>
+
+
+    <div id="progressContainer" style="display: none;">
+        <p>Processing...</p>
+        <div class="progress-bar">
+            <div id="progressBarFill"></div>
+        </div>
+    </div>
+
+
+    {% if result %}
+        <p class="result">{{ result }}</p>
+    {% endif %}
+
+    {% if file_ready %}
+        <form action="/download" method="get">
+            <button type="submit">Download Predictions</button>
+        </form>
+    {% endif %}
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const progress = document.getElementById('progressContainer');
+        const bar = document.getElementById('progressBarFill');
+    
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            progress.style.display = 'block';
+            bar.style.width = '0%';
+    
+            const interval = setInterval(() => {
+                const currentWidth = parseFloat(bar.style.width);
+                if (currentWidth >= 90) {
+                    clearInterval(interval);  // Leave room for final jump
+                } else {
+                    bar.style.width = (currentWidth + 10) + '%';
+                }
+            }, 300);
+    
+            // Let the form submit after showing progress
+            setTimeout(() => {
+                form.submit();
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>
+
